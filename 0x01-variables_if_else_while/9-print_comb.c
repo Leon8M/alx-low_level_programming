@@ -7,21 +7,15 @@
  */
 int main(void)
 {
-int num1, num2;
+int i;
 
-for (num1 = 0; num1 < 10; num1++)
+for (i = 0; i <= 9; i++)
 {
-for (num2 = num1 + 1; num2 < 10; num2++)
-{
-putchar(num1 + '0');
-putchar(',');
-putchar(' ');
-putchar(num2 + '0');
-if (num1 != 8 || num2 != 9)
+putchar(i + '0');
+if (i != 9)
 {
 putchar(',');
 putchar(' ');
-}
 }
 }
 putchar('\n');
