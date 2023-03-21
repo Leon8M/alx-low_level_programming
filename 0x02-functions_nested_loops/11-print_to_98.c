@@ -5,7 +5,7 @@
  * @n: the starting number
  * print_number - prints an integer using _putchar
  * @n: the integer to print
- *
+ *print_number - int
  * Description: This function prints the digits of an integer using recursion
  * and the _putchar function. If the integer is negative, it first prints a
  * negative sign. If the integer is zero, it prints a single '0' character.
