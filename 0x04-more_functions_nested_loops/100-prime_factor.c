@@ -11,7 +11,7 @@ int main(void)
 long int n = 612852475143;
 long int i;
 
-    while (n % 2 == 0)
+while (n % 2 == 0)
 {
 n /= 2;
 }
