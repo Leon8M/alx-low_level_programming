@@ -15,7 +15,7 @@ char *dest_ptr = dest;
 char *src_ptr = src;
 
 for (i = 0; i < n; i++)
-{	
+{
 *(dest_ptr + i) = *(src_ptr + i);
 }
 
