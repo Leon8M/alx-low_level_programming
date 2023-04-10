@@ -6,7 +6,7 @@
  * main - Entry point
  * @argc: Number of arguments passed to the program
  * @argv: Array of strings representing the arguments passed to the program
- *
+ * @atoi: convert the string arguments to integers, multiplies them, and then prints the result
  * Return: 0 if successful, 1 if there are not enough arguments
  */
 int main(int argc, char *argv[])
