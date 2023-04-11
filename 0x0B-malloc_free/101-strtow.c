@@ -11,7 +11,7 @@
  */
 char **strtow(char *str)
 {
-char **array;
+char **arr;
 int i, j, k, count = 0, len;
 
 if (str == NULL || *str == '\0')
