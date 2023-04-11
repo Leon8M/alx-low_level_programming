@@ -3,9 +3,6 @@
 #include <string.h>
 #include <stdio.h>
 
-int count_words(char *str);
-int get_word_length(char *str);
-
 /**
  * strtow - Splits a string into words
  * @str: The string to split
@@ -14,81 +11,43 @@ int get_word_length(char *str);
  */
 char **strtow(char *str)
 {
-char **words;
-int i, j, k, len, count;
-
 if (str == NULL || *str == '\0')
-return (NULL);
+return NULL;
 
-count = count_words(str);
-if (count == 0)
-return (NULL);
+int i, j, k, count = 0, len;
+char **arr;
 
-words = malloc(sizeof(char *) * (count + 1));
-if (words == NULL)
-return (NULL);
-
-for (i = 0, k = 0; i < count; i++)
+for (i = 0; str[i] != '\0'; i++)
 {
-len = get_word_length(str + k);
-words[i] = malloc(sizeof(char) * (len + 1));
-if (words[i] == NULL)
-{
-for (j = 0; j < i; j++)
-free(words[j]);
-free(words);
-return (NULL);
-}
-
-for (j = 0; j < len; j++)
-words[i][j] = str[k + j];
-words[i][j] = '\0';
-
-k += len;
-while (str[k] == ' ')
-k++;
-}
-
-words[i] = NULL;
-
-return (words);
-}
-
-/**
- * count_words - Counts the number of words in a string
- * @str: The string to count the words
- *
- * Return: The number of words in the string
- */
-int count_words(char *str)
-{
-int count = 0;
-
-while (*str != '\0')
-{
-if (*str != ' ')
+if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
 count++;
-while (*str != ' ' && *str != '\0')
-str++;
-if (*str != '\0')
-str++;
 }
 
-return (count);
-}
+arr = malloc((count + 1) * sizeof(char *));
+if (arr == NULL)
+return (NULL);
 
-/**
- * get_word_length - Gets the length of a word in a string
- * @str: The string to get the word length
- *
- * Return: The length of the word
- */
-int get_word_length(char *str)
+for (i = 0, j = 0; j < count; j++)
 {
-int len = 0;
-
-while (str[len] != ' ' && str[len] != '\0')
+while (str[i] == ' ')
+i++;
+len = 0;
+while (str[i + len] != ' ' && str[i + len] != '\0')
 len++;
+arr[j] = malloc((len + 1) * sizeof(char));
+if (arr[j] == NULL)
+{
+for (k = 0; k < j; k++)
+free(arr[k]);
+free(arr);
+return (NULL);
+}
+strncpy(arr[j], &str[i], len);
+arr[j][len] = '\0';
+i += len;
+}
 
-return (len);
+arr[count] = NULL;
+
+return (arr);
 }
