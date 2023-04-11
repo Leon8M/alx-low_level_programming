@@ -11,9 +11,8 @@
  */
 char **strtow(char *str)
 {
-int i, j, k, count = 0;
-int len;
-char **arr;
+char **array;
+int i, j, k, count = 0, len;
 
 if (str == NULL || *str == '\0')
 return (NULL);
