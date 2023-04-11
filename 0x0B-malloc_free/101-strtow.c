@@ -11,10 +11,12 @@
  */
 char **strtow(char *str)
 {
-if (str == NULL || *str == '\0')
-return NULL;
+int i, j, k, count = 0;
+int len;
 
-int i, j, k, count = 0, len;
+if (str == NULL || *str == '\0')
+return (NULL);
+
 char **arr;
 
 for (i = 0; str[i] != '\0'; i++)
