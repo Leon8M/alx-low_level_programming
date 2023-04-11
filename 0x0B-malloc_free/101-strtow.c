@@ -4,50 +4,83 @@
 #include <stdio.h>
 
 /**
- * strtow - Splits a string into words
- * @str: The string to split
+ * count_words - Counts the number of words in a string.
+ * @str: The string to be counted.
  *
- * Return: A pointer to an array of strings (words), or NULL if fails
+ * Return: The number of words counted.
+ */
+int count_words(char *str)
+{
+int count = 0, in_word = 0;
+
+while (*str)
+{
+if (*str != ' ')
+{
+if (!in_word)
+in_word = 1, ++count;
+}
+else
+in_word = 0;
+
+++str;
+}
+
+return (count);
+}
+
+/**
+ * strtow - Splits a string into words.
+ * @str: The string to be split.
+ *
+ * Return: If str is NULL or contains no words - NULL.
+ *         Otherwise - a pointer to an array of strings (words).
  */
 char **strtow(char *str)
 {
-char **arr;
-int i, j, k, count = 0, len;
+char **words;
+int word_count, i = 0, j, k, len = 0, start;
 
-if (str == NULL || *str == '\0')
+if (!str || !*str)
 return (NULL);
 
-for (i = 0; str[i] != '\0'; i++)
+word_count = count_words(str);
+if (word_count == 0)
+return (NULL);
+
+words = malloc(sizeof(char *) * (word_count + 1));
+if (!words)
+return (NULL);
+
+while (str[i])
 {
-if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
-count++;
+if (str[i] == ' ')
+{
+i++;
+continue;
 }
 
-arr = malloc((count + 1) * sizeof(char *));
-if (arr == NULL)
-return (NULL);
+start = i;
+while (str[i] && str[i] != ' ')
+len++, i++;
 
-for (i = 0, j = 0; j < count; j++)
-{
-while (str[i] == ' ')
-i++;
-len = 0;
-while (str[i + len] != ' ' && str[i + len] != '\0')
-len++;
-arr[j] = malloc((len + 1) * sizeof(char));
-if (arr[j] == NULL)
+words[j] = malloc(sizeof(char) * (len + 1));
+if (!words[j])
 {
 for (k = 0; k < j; k++)
-free(arr[k]);
-free(arr);
+free(words[k]);
+
+free(words);
 return (NULL);
 }
-strncpy(arr[j], &str[i], len);
-arr[j][len] = '\0';
-i += len;
+
+for (k = 0; k < len; k++)
+words[j][k] = str[start + k];
+
+words[j][k] = '\0';
+j++, len = 0;
 }
 
-arr[count] = NULL;
-
-return (arr);
+words[j] = NULL;
+return (words);
 }
