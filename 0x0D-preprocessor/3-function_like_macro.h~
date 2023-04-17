@@ -1,0 +1,8 @@
+#ifndef 3_FUNCTION_LIKE_MACRO_H
+#define 3_FUNCTION_LIKE_MACRO_H
+
+#define ABS(x) ((x) < 0 ? -(x) : (x))
+#define SUM(x, y) ((x) + (y))
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
+
+#endif /* 3_FUNCTION_LIKE_MACRO_H */
