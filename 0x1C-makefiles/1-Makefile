@@ -1,0 +1,15 @@
+# Makefile for compiling the school program
+
+# Compiler settings
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# Executable name
+EXEC = school
+
+# Source files
+SRC = main.c school.c
+
+# Default rule to build executable
+all:
+	$(CC) $(CFLAGS) $(SRC) -o $(EXEC)
